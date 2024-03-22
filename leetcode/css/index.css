@@ -1,5 +1,7 @@
 :root {
     --color-grey: #0000008c;
+    --color-light:#0000001c;
+    --color-basic:#0000000A;
 }
 
 * {
@@ -7,7 +9,9 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+body{
+    background: var(--color-basic);
+}
 .header {
     width: 100%;
     height: 50px;
@@ -78,30 +82,51 @@
     width: 50rem;
     height: 7rem;
     margin: 10px;
-    
+    display: flex;
+    justify-content: space-between;
 }
-.dis1{
-    width: 40%;
-    height: 50px;
-    margin: auto 5%;
-    overflow: hidden;
+.dis1 , .dis2{
+    width: 49.5%;
+    height: 100%;
+    background: white;
+    border:1px solid white;
+    border-radius: 5px;
+    box-shadow:0 0 5px 0.5px var(--color-light);
+}
+
+.box1{
+    display: inline-block;
+    height: 30%;
+    width: 80%;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.discussion span{
+    vertical-align:middle;
+    color: orange;
+    background: #f8deaac0;
+    border: 1px solid #f8deaac0;
+    border-radius: 10px;
+    font-size: 14px;
+    padding: 2px;
+}
+.box2 {
+    font-size: 12px;
+    height: 50%;
+    width: 100%;
+    color: var(--color-grey);
+    padding: 5px 10px;
     white-space:nowrap;
     text-overflow: ellipsis;
+    overflow: hidden;
+    /* 两行省略不会，一行都省略不了 */
 }
-.dis1 h{
-    font-size: 14px;  
-}
-.dis1 span{
-    display: block;
+.discussion a{
     float: right;
-    color: orange;
-    background: #f9d07efc;
-    border: 1px solid #f9d07efc;
-    border-radius: 30px;
-}
-.dis1 p{
+    margin-right: 15px;
     font-size: 12px;
-    margin-bottom: 10px ;
+    text-decoration: none;
 }
 .part2 {
     margin: 10px;
