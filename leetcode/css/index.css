@@ -52,9 +52,10 @@
 
 .list {
     display: none;
+    z-index: 1;
 }
 
-.menu>li:active .list {
+.menu>li:hover .list {
     /* active只能保持一下，应该要用js */
     display: block;
     position: absolute;
@@ -71,15 +72,39 @@
 
 }
 
-.part1 {
-    position: relative;
+.discussion {
     top: 20px;
     background-color: antiquewhite;
     width: 50rem;
-    height: 20rem;
+    height: 7rem;
+    margin: 10px;
+    
 }
-
+.dis1{
+    width: 40%;
+    height: 50px;
+    margin: auto 5%;
+    overflow: hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+}
+.dis1 h{
+    font-size: 14px;  
+}
+.dis1 span{
+    display: block;
+    float: right;
+    color: orange;
+    background: #f9d07efc;
+    border: 1px solid #f9d07efc;
+    border-radius: 30px;
+}
+.dis1 p{
+    font-size: 12px;
+    margin-bottom: 10px ;
+}
 .part2 {
+    margin: 10px;
     background-color: aliceblue;
     width: 50rem;
     height: 20rem;
