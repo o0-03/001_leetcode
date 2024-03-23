@@ -1,294 +1,383 @@
 :root {
-    --color-grey: #0000008c;
-    --color-light: #0000001c;
-    --color-basic: #0000000A;
+  --color-grey: #0000008c;
+  --color-light: #0000001c;
+  --color-basic: #0000000a;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 body {
-    background: var(--color-basic);
+  background: var(--color-basic);
 }
 
 .header {
-    width: 100%;
-    height: 50px;
-    background: #fff;
-    border-bottom: 1px solid #ddd;
-    padding: 0 24px;
+  width: 100%;
+  height: 50px;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  padding: 0 24px;
 }
 
 .menu {
-    display: flex;
-    list-style: none;
+  display: flex;
+  list-style: none;
 }
 
 .menu li {
-    padding: 10px 10px;
+  padding: 10px 10px;
 }
 
 .menu li a {
-    text-decoration: none;
-    color: var(--color-grey);
-    font-size: 16px;
+  text-decoration: none;
+  color: var(--color-grey);
+  font-size: 16px;
 }
 
 .menu li a:hover {
-    color: #000;
+  color: #000;
 }
 
-.menu>li:nth-last-of-type(1) a {
-    color: orange;
+.menu > li:nth-last-of-type(1) a {
+  color: orange;
 }
 
 .list {
-    list-style: none;
+  list-style: none;
 }
 
 .list li a {
-    text-decoration: none;
-    color: var(--color-grey);
-    font-size: 16px;
-    color: orange;
+  text-decoration: none;
+  color: var(--color-grey);
+  font-size: 16px;
+  color: orange;
 }
 
 .list {
-    display: none;
-    z-index: 1;
+  display: none;
+  z-index: 1;
 }
 
-.menu>li:hover .list {
-    /* active只能保持一下，应该要用js */
-    display: block;
-    position: absolute;
-    top: 50px;
-    background: #fff;
-    border: 1px solid #fff;
-    border-radius: 5%;
-    box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.1);
+.menu > li:hover .list {
+  /* active只能保持一下，应该要用js */
+  display: block;
+  position: absolute;
+  top: 50px;
+  background: #fff;
+  border: 1px solid #fff;
+  border-radius: 5%;
+  box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.1);
 }
 
 .main {
-    width: 80rem;
-    height: 100rem;
-    margin: 20px auto 0;
+  width: 80rem;
+  height: 100rem;
+  margin: 20px auto 0;
 }
 
-.main>div {
-    float: left;
+.main > div {
+  float: left;
 }
 
 .left {
-    width: 50rem;
-    height: 30rem;
-    background-color: violet;
-    margin-right: 10px;
-    padding: 10px;
+  width: 50rem;
+  height: 30rem;
+  margin-right: 10px;
+  padding: 10px;
 }
 
 .right {
-    width: 20rem;
-    height: 30rem;
-    background: #a4fd14c0;
+  width: 12rem;
+  height: 30rem;
+  background: #a4fd14c0;
 }
 
 .discussion {
-    top: 20px;
-    height: 7rem;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
+  top: 20px;
+  height: 7rem;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .dis1,
 .dis2 {
-    width: 49.5%;
-    height: 100%;
-    background: white;
-    border: 1px solid white;
-    border-radius: 5px;
-    box-shadow: 0 0 5px 0.5px var(--color-light);
+  width: 49.5%;
+  height: 100%;
+  background: white;
+  border: 1px solid white;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 0.5px var(--color-light);
 }
 
 .box1 {
-    display: inline-block;
-    height: 30%;
-    width: 80%;
-    padding: 10px;
-    font-size: 14px;
+  display: inline-block;
+  height: 30%;
+  width: 80%;
+  padding: 10px;
+  font-size: 14px;
 }
 
 .discussion span {
-    vertical-align: middle;
-    color: orange;
-    background: #f8deaac0;
-    border: 1px solid #f8deaac0;
-    border-radius: 10px;
-    font-size: 14px;
-    padding: 2px;
+  vertical-align: middle;
+  color: orange;
+  background: #f8deaac0;
+  border: 1px solid #f8deaac0;
+  border-radius: 10px;
+  font-size: 14px;
+  padding: 2px;
 }
 
 .box2 {
-    font-size: 12px;
-    height: 50%;
-    width: 100%;
-    color: var(--color-grey);
-    padding: 5px 10px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    /* 两行省略不会，一行都省略不了 */
+  font-size: 12px;
+  height: 50%;
+  width: 100%;
+  color: var(--color-grey);
+  padding: 5px 10px;
+
+  /* 已改 */
+}
+.box2 > p {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .discussion a {
-    float: right;
-    margin-right: 15px;
-    font-size: 12px;
-    text-decoration: none;
+  float: right;
+  margin-right: 15px;
+  font-size: 12px;
+  text-decoration: none;
 }
 
 .advertisement {
-    height: 5rem;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: center;
+  height: 5rem;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
 }
 
-.advertisement>a>img {
-    width: 48rem;
-    height: 5rem;
+.advertisement > a > img {
+  width: 48rem;
+  height: 5rem;
+  border-radius: 10px;
+}
+.advertisement > a > img:hover {
+  animation: move 0.5s linear forwards;
+}
+@keyframes move {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+  100% {
+    transform: translateY(-3px);
+  }
 }
 
 .interview {
-    background: #fff;
-    border-radius: 10px;
-    padding: 10px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px;
 }
 
 .brief {
-    height: 2rem;
-    display: flex;
-    align-items: center;
-
+  height: 2rem;
+  display: flex;
+  align-items: center;
 }
 
-.brief>img {
-    height: 2rem;
-
+.brief > img {
+  height: 2rem;
 }
 
-.brief>span {
-    margin: 0 auto 0 5px;
+.brief > span {
+  margin: 0 auto 0 5px;
 }
 
-.brief>a {
-    text-decoration: none;
-    color: var(--color-grey);
-    font-size: 12px;
+.brief > a {
+  text-decoration: none;
+  color: var(--color-grey);
+  font-size: 12px;
 }
 
 .company {
-    height: 6rem;
-    display: flex;
-    justify-content: space-between;
-    padding: 5px;
+  height: 6rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
 }
 
-.company>a {
-    width: 23%;
-    background-color: var(--color-basic);
-    border-radius: 10px;
-    padding: 10px 20px;
-
+.company > a {
+  width: 23%;
+  background-color: var(--color-basic);
+  border-radius: 10px;
+  padding: 10px 20px;
 }
 
-.company a>img {
-    height: 2rem;
-    float: left;
+.company a > img {
+  height: 2rem;
+  float: left;
 }
 
-.company a>span {
-    display: block;
-    line-height: 2rem;
-    padding-left: 45px;
-    color: #000;
+.company a > span {
+  display: block;
+  line-height: 2rem;
+  padding-left: 45px;
+  color: #000;
 }
 
 .detail {
-    font-size: 12px;
-    margin-top: 10px;
-    color: var(--color-grey);
+  font-size: 12px;
+  margin-top: 10px;
+  color: var(--color-grey);
 }
-.article{
-    width: 100%;
-    height: 30rem;
-    padding: 20px;
-    background-color: aliceblue;
+.article {
+  width: 100%;
+
+  margin-top: 10px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: white;
 }
-.page{
-    height: 8rem;
+.page {
+  height: 8rem;
+  overflow: hidden;
 }
-.page>img{
-    height: 7rem;
-float: left;
-border-radius: 5%;
+.page > img {
+  height: 7rem;
+  float: left;
+  border-radius: 5%;
 }
-.page>div>img{
-    height: 2rem;
-    border-radius: 50%;
-    margin-right: 10px;
+.page > div > img {
+  height: 2rem;
+  border-radius: 50%;
+  margin-right: 10px;
 }
-.page>.content{
-    display: flex;
-    padding:0 10px;
-    align-items: center;
+.page > .content {
+  display: flex;
+  padding: 0 10px;
+  align-items: center;
 }
-.page>.content>span:last-of-type{
-    margin-left: auto;
-    font-size: 14px;
-    color: var(--color-grey);
+.page > .content > span:last-of-type {
+  margin-left: auto;
+  font-size: 14px;
+  color: var(--color-grey);
 }
-.page>p{
-    display: flex;
-    padding: 5px 10px;
-    height: 3rem;
-    font-size: 14px;
-    color: var(--color-grey);
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    /* 第二次，还是不知道怎么写省略 */
+.page > p {
+  display: block;
+  padding: 5px 10px;
+  height: 3rem;
+  font-size: 14px;
+  color: var(--color-grey);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  /* 已改 */
 }
 
-.page>.tag{
-    display: flex;
-    padding:0 10px;
-   
-   
+.page > .tag {
+  display: flex;
+  padding: 0 10px;
 }
-.page>.tag>span:nth-of-type(1){
-    
-    background:rgb(188, 225, 183) ;
-    border-radius:50px;
-    padding: 1px 7px;
-    font-size: 10px;
-    color: rgb(63, 196, 42);
+.page > .tag > span:nth-of-type(1) {
+  background: rgb(188, 225, 183);
+  border-radius: 50px;
+  padding: 1px 7px;
+  font-size: 10px;
+  color: rgb(63, 196, 42);
 }
-.page>.tag>span:nth-last-of-type(-n+3){
-    
-    background: var(--color-basic);
-    border-radius:50px;
-    padding: 1px 7px;
-    font-size: 10px;
-    color: var(--color-grey);
-    margin-left: 5px;
+.page > .tag > span:nth-last-of-type(-n + 3) {
+  background: var(--color-basic);
+  border-radius: 50px;
+  padding: 1px 7px;
+  font-size: 10px;
+  color: var(--color-grey);
+  margin-left: 5px;
 }
-/* 感觉只是做了个标签的样子，实际没有能扩展的能力 */
+/* 废 */
+
+.searchbox {
+  position: relative;
+  height: 25px;
+  width: 100%;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.searchbox > img {
+  height: 25px;
+  background-color: white;
+  float: left;
+}
+.searchbox > input {
+  width: 100%;
+  position: absolute;
+  left: 25px;
+  height: 25px;
+  border: none;
+  outline: none;
+}
+.clear {
+  height: 15px;
+  width: 15px;
+  background-color: var(--color-basic);
+  position: absolute;
+  right: 15px;
+  top: 5px;
+  border-radius: 50%;
+}
+.clear::before {
+  content: "";
+  width: 1px;
+  height: 15px;
+  position: absolute;
+  right: 7.5px;
+  background-color: var(--color-grey);
+  transform: rotate(45deg);
+}
+.clear::after {
+  content: "";
+  width: 1px;
+  height: 15px;
+  right: 7.5px;
+  position: absolute;
+  background-color: var(--color-grey);
+  transform: rotate(135deg);
+}
+
+.hot {
+  background: white;
+  border-radius: 5px;
+}
+.hot > p {
+  margin: 10px;
+}
+.hot div {
+  padding: 10px;
+  width: 100%;
+}
+.hot div p {
+  margin-left: 14px;
+  font-size: 12px;
+  color: var(--color-grey);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.hot div img {
+  height: 14px;
+  border-radius: 50%;
+  margin: 0 5px;
+}
