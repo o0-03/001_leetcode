@@ -49,25 +49,19 @@ body {
   color: orange;
 }
 
-.list {
-  list-style: none;
-}
-
 .list li a {
   text-decoration: none;
   color: var(--color-grey);
   font-size: 16px;
   color: orange;
 }
-
+.list li:hover {
+  background-color: var(--color-basic);
+}
 .list {
+  list-style: none;
   display: none;
   z-index: 1;
-}
-
-.menu > li:hover .list {
-  /* active只能保持一下，应该要用js */
-  display: block;
   position: absolute;
   top: 50px;
   background: #fff;
@@ -171,18 +165,27 @@ body {
   height: 5rem;
   border-radius: 10px;
 }
-.advertisement > a > img:hover {
-  animation: move 0.5s linear forwards;
-}
+
 @keyframes move {
   0% {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-2px);
+    transform: translateY(-1px);
   }
   100% {
-    transform: translateY(-3px);
+    transform: translateY(-2px);
+  }
+}
+@keyframes moveback {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(1px);
+  }
+  100% {
+    transform: translateY(2px);
   }
 }
 
