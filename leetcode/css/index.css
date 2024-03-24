@@ -1,4 +1,4 @@
-:root {
+:root[color-mode="light"] {
   --color-grey: #0000008c;
   --color-light: #0000001c;
   --color-basic: #0000000a;
@@ -19,14 +19,16 @@ body {
 }
 
 .header {
+  display: flex;
   width: 100%;
   height: 50px;
   background: #fff;
   border-bottom: 1px solid #ddd;
-  padding: 0 24px;
+  padding: 0 15rem;
 }
 
 .menu {
+  width: 95%;
   display: flex;
   list-style: none;
 }
@@ -69,9 +71,23 @@ body {
   border-radius: 5%;
   box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.1);
 }
-
+.other {
+  height: 50px;
+}
+.other > a > img {
+  height: 36px;
+  margin: 7px 0;
+  border-radius: 50%;
+}
+#introduction {
+  display: none;
+  z-index: 99;
+  height: 20rem;
+  width: 12rem;
+  background-color: aliceblue;
+}
 .main {
-  width: 80rem;
+  width: 66rem;
   height: 100rem;
   margin: 20px auto 0;
 }
@@ -83,14 +99,14 @@ body {
 .left {
   width: 50rem;
   height: 30rem;
-  margin-right: 10px;
+  margin-right: 1rem;
   padding: 10px;
 }
 
 .right {
-  width: 12rem;
+  width: 15rem;
   height: 30rem;
-  background: #a4fd14c0;
+  margin-top: 10px;
 }
 
 .discussion {
@@ -161,8 +177,7 @@ body {
 }
 
 .advertisement > a > img {
-  width: 48rem;
-  height: 5rem;
+  width: 49rem;
   border-radius: 10px;
 }
 
@@ -318,6 +333,7 @@ body {
   background: white;
   border-radius: 10px;
   overflow: hidden;
+  margin-bottom: 10px;
 }
 .searchbox > img {
   height: 25px;
@@ -383,4 +399,38 @@ body {
   height: 14px;
   border-radius: 50%;
   margin: 0 5px;
+}
+.slide {
+  position: relative;
+  width: 15rem;
+  overflow: hidden;
+}
+.imglist {
+  width: 60rem;
+  list-style: none;
+  position: relative;
+}
+.imglist li {
+  float: left;
+}
+.imglist li img {
+  width: 15rem;
+  height: 9rem;
+  border-radius: 10px;
+}
+.circle {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  list-style: none;
+}
+.circle li {
+  float: left;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  margin: 0 4px;
+  background-color: var(--color-grey);
+  cursor: pointer;
 }
