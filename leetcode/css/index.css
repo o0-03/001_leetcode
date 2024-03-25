@@ -90,10 +90,7 @@ body {
   width: 66rem;
   height: 100rem;
   margin: 20px auto 0;
-}
-
-.main > div {
-  float: left;
+  display: flex;
 }
 
 .left {
@@ -125,10 +122,21 @@ body {
   border: 1px solid white;
   border-radius: 5px;
   box-shadow: 0 0 5px 0.5px var(--color-light);
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.discussion a {
+  margin-right: 15px;
+  font-size: 12px;
+  text-decoration: none;
+  justify-self: flex-end;
+  align-self: flex-end;
 }
 
 .box1 {
   display: inline-block;
+
   height: 30%;
   width: 80%;
   padding: 10px;
@@ -143,6 +151,7 @@ body {
   border-radius: 10px;
   font-size: 14px;
   padding: 2px;
+  width: 3rem;
 }
 
 .box2 {
@@ -160,13 +169,6 @@ body {
   -webkit-line-clamp: 2;
   text-overflow: ellipsis;
   overflow: hidden;
-}
-
-.discussion a {
-  float: right;
-  margin-right: 15px;
-  font-size: 12px;
-  text-decoration: none;
 }
 
 .advertisement {
