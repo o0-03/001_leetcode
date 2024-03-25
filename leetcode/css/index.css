@@ -126,25 +126,25 @@ body {
   flex-wrap: wrap;
 }
 
-.discussion a {
+.into {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+.into a {
   margin-right: 15px;
   font-size: 12px;
   text-decoration: none;
-  justify-self: flex-end;
-  align-self: flex-end;
 }
 
 .box1 {
-  display: inline-block;
-
-  height: 30%;
+  height: 2rem;
   width: 80%;
   padding: 10px;
   font-size: 14px;
 }
 
 .discussion span {
-  vertical-align: middle;
   color: orange;
   background: #f8deaac0;
   border: 1px solid #f8deaac0;
@@ -152,6 +152,7 @@ body {
   font-size: 14px;
   padding: 2px;
   width: 3rem;
+  align-self: center;
 }
 
 .box2 {
@@ -244,18 +245,19 @@ body {
   background-color: var(--color-basic);
   border-radius: 10px;
   padding: 10px 20px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .company a > img {
   height: 2rem;
-  float: left;
+  align-self: center;
 }
 
 .company a > span {
-  display: block;
-  line-height: 2rem;
-  padding-left: 45px;
+  padding-left: 10px;
   color: #000;
+  align-self: center;
 }
 
 .detail {
@@ -265,7 +267,6 @@ body {
 }
 .article {
   width: 100%;
-
   margin-top: 10px;
   padding: 20px;
   border-radius: 10px;
@@ -273,11 +274,14 @@ body {
 }
 .page {
   height: 8rem;
-  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 .page > img {
   height: 7rem;
-  float: left;
+
   border-radius: 5%;
 }
 .page > div > img {
@@ -287,6 +291,7 @@ body {
 }
 .page > .content {
   display: flex;
+  width: 77%;
   padding: 0 10px;
   align-items: center;
 }
@@ -296,9 +301,9 @@ body {
   color: var(--color-grey);
 }
 .page > p {
-  display: block;
   padding: 5px 10px;
   height: 3rem;
+  width: 77%;
   font-size: 14px;
   color: var(--color-grey);
   white-space: nowrap;
@@ -340,10 +345,9 @@ body {
 .searchbox > img {
   height: 25px;
   background-color: white;
-  float: left;
 }
 .searchbox > input {
-  width: 100%;
+  width: 80%;
   position: absolute;
   left: 25px;
   height: 25px;
@@ -411,10 +415,9 @@ body {
   width: 60rem;
   list-style: none;
   position: relative;
+  display: flex;
 }
-.imglist li {
-  float: left;
-}
+
 .imglist li img {
   width: 15rem;
   height: 9rem;
@@ -426,9 +429,9 @@ body {
   left: 50%;
   transform: translateX(-50%);
   list-style: none;
+  display: flex;
 }
 .circle li {
-  float: left;
   width: 0.7rem;
   height: 0.7rem;
   border-radius: 50%;
