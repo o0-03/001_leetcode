@@ -2,6 +2,8 @@
   --color-grey: #0000008c;
   --color-light: #0000001c;
   --color-basic: #0000000a;
+  --color-black: #000;
+  --color-white: #fff;
 }
 
 * {
@@ -274,7 +276,7 @@ body {
 }
 .page {
   height: 8rem;
-
+  position: relative;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -332,6 +334,74 @@ body {
   margin-left: 5px;
 }
 /* 废 */
+
+.userIntro {
+  width: 15rem;
+  height: 8rem;
+  padding: 5px;
+  background-color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 12rem;
+  top: 2.4rem;
+  border-radius: 10px;
+  box-shadow: 0 0 5px 2px var(--color-basic);
+  opacity: 0;
+  z-index: 1;
+}
+/* 这里有问题 */
+.content > img:hover + .userIntro {
+  opacity: 1;
+  transition: 0.5s;
+}
+.userIntro:hover {
+  opacity: 1;
+}
+.userIntro1 {
+  display: flex;
+  flex-wrap: wrap;
+}
+.userIntro1 > a > img {
+  height: 3rem;
+  border-radius: 3px;
+}
+.userIntro11 {
+  width: 11rem;
+  margin-left: 5px;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+.userIntro11 > p:nth-of-type(1) {
+  display: flex;
+  justify-content: space-between;
+}
+.name {
+  color: #000;
+}
+.ip {
+  color: var(--color-grey);
+}
+.number {
+  padding: 5px;
+  color: green;
+}
+.userIntro2 {
+  display: flex;
+  justify-content: space-around;
+}
+.userIntro2 > p {
+  text-align: center;
+  font-size: 14px;
+}
+.userIntro3 {
+  display: flex;
+  justify-content: space-around;
+}
+.userIntro3 button {
+  width: 6rem;
+}
 
 .searchbox {
   position: relative;

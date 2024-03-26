@@ -65,3 +65,23 @@ function fix(index) {
   move();
 }
 // 不太对，还在想错误在哪
+
+// 信息界面
+// const see = document.getElementsByClassName("see")[0];
+// const maintain = document.getElementsByClassName("userIntro")[0];
+// const isOpacity = Number(maintain.style.opacity);
+// see.addEventListener("mouseover", function () {
+//   maintain.style.opacity = "1";
+// });
+// see.addEventListener("mouseout", function () {
+//   maintain.style.opacity = "0";
+// });
+// if (isOpacity == 0) {
+//   maintain.addEventListener("mouseover", function () {
+//     maintain.style.opacity = "1";
+//   });
+//   maintain.addEventListener("mouseout", function () {
+//     maintain.style.opacity = "0";
+//   });
+// }
+// 和css一样而且还麻烦，还得循环
