@@ -67,21 +67,79 @@ function fix(index) {
 // 不太对，还在想错误在哪
 
 // 信息界面
-// const see = document.getElementsByClassName("see")[0];
-// const maintain = document.getElementsByClassName("userIntro")[0];
-// const isOpacity = Number(maintain.style.opacity);
-// see.addEventListener("mouseover", function () {
-//   maintain.style.opacity = "1";
-// });
-// see.addEventListener("mouseout", function () {
-//   maintain.style.opacity = "0";
-// });
-// if (isOpacity == 0) {
-//   maintain.addEventListener("mouseover", function () {
-//     maintain.style.opacity = "1";
-//   });
-//   maintain.addEventListener("mouseout", function () {
-//     maintain.style.opacity = "0";
-//   });
-// }
+
 // 和css一样而且还麻烦，还得循环
+
+let userIntro = document.createElement("div");
+
+userIntro.className = "userIntro";
+userIntro.innerHTML = `
+<div class="userIntro1">
+    <a href="#"><img src="../images/user.webp" alt="" /></a>
+    <div class="userIntro11">
+        <p>
+            <a href="#"><span class="name">用户名</span></a>
+            <span class="ip">ip:湖北</span>
+        </p>
+        <p>
+            <span>全站排名</span><span class="number">9999+</span>
+        </p>
+    </div>
+</div>
+<div class="userIntro2">
+    <p>被阅读<br />0</p>
+    <p>被点赞<br />0</p>
+    <p>被收藏<br />0</p>
+    <p>关注数<br />0</p>
+</div>
+<div class="userIntro3">
+    <button type="submit">私信</button>
+    <button type="submit">关注</button>
+</div>
+`;
+
+const arr1 = document.querySelectorAll(".see");
+
+const arr2 = document.querySelectorAll(".page");
+
+arr1.forEach(function (e, i) {
+  arr1[i].addEventListener("mouseover", function () {
+    const userIntroClone = userIntro.cloneNode(true);
+    userIntroClone.style.display = "block";
+    userIntroClone.style.animation = "opa 0.5s";
+    arr2[i].append(userIntroClone);
+  });
+  arr1[i].addEventListener("mouseout", function () {
+    const userIntroClone = arr2[i].querySelector(".userIntro");
+    userIntroClone.addEventListener("mouseout", function () {
+      if (userIntroClone) {
+        userIntroClone.style.display = "none";
+        userIntroClone.remove();
+      }
+    });
+
+    //有问题
+  });
+});
+
+//回顶
+const scroll = document.getElementById("scroll");
+window.onscroll = function () {
+  const scrollTop = document.documentElement.scrollTop;
+  if (scrollTop > 200) {
+    scroll.style.display = "inline";
+  } else {
+    scroll.style.display = "none";
+  }
+};
+
+scroll.addEventListener("click", function () {
+  const time = setInterval(function () {
+    scrollTop = document.documentElement.scrollTop;
+    if (scrollTop <= 0) {
+      clearInterval(time);
+    } else {
+      window.scroll(0, scrollTop - 50);
+    }
+  }, 10);
+});
