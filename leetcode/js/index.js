@@ -103,22 +103,28 @@ const arr1 = document.querySelectorAll(".see");
 const arr2 = document.querySelectorAll(".page");
 
 arr1.forEach(function (e, i) {
-  arr1[i].addEventListener("mouseover", function () {
-    const userIntroClone = userIntro.cloneNode(true);
-    userIntroClone.style.display = "block";
-    userIntroClone.style.animation = "opa 0.5s";
-    arr2[i].append(userIntroClone);
-  });
-  arr1[i].addEventListener("mouseout", function () {
-    const userIntroClone = arr2[i].querySelector(".userIntro");
-    userIntroClone.addEventListener("mouseout", function () {
-      if (userIntroClone) {
-        userIntroClone.style.display = "none";
+  const userIntroClone = userIntro.cloneNode(true);
+
+  // arr1[i].addEventListener("mouseout", function () {
+  //   const userIntroClone = arr2[i].querySelector(".userIntro");
+  //   if (userIntroClone) {
+  //     userIntroClone.style.display = "none";
+  //     userIntroClone.remove();
+  //   }
+  // });
+
+  window.addEventListener("mouseover", function (event) {
+    const mouse = event.target;
+    if (arr1[i].contains(mouse)) {
+      userIntroClone.style.display = "block";
+      userIntroClone.style.animation = "opa 0.5s";
+      arr2[i].append(userIntroClone);
+    }
+    setTimeout(function () {
+      if (!userIntroClone.contains(mouse) && !arr1[i].contains(mouse)) {
         userIntroClone.remove();
       }
-    });
-
-    //有问题
+    }, 1);
   });
 });
 
@@ -143,3 +149,73 @@ scroll.addEventListener("click", function () {
     }
   }, 10);
 });
+
+//mode
+const html = document.querySelector("html");
+var mode = html.getAttribute("color-mode");
+var modeName = document.getElementById("modeName");
+
+function changeMode() {
+  if (mode === "light") {
+    mode = "dark";
+    modeName.innerText = "黑夜";
+  } else {
+    mode = "light";
+    modeName.innerText = "白天";
+  }
+  html.setAttribute("color-mode", mode);
+}
+
+//login
+function login() {
+  var loginPage = document.createElement("div");
+  loginPage.id = "loginPart";
+  loginPage.innerHTML = `
+    <div class="contain"><img src="../images/leetcode.svg" alt=""></div>
+      <p>账号密码登录</p>
+      <form action="#" onsubmit="return submitUser()">
+        <input id="text" type="text" placeholder="手机/邮箱">
+        <input id="password" type="password" placeholder="输入密码">
+        <input id="submit" type="submit" value="登录">
+      </form>
+      <div>
+        <a href="#">验证码登录</a>
+        <a href="#">忘记密码</a>
+      </div>
+      <p>注册或登录即代表您同意《用户协议》和《隐私协议》</p>`;
+  const body = document.body;
+  body.append(loginPage);
+  var mask = document.createElement("div");
+  mask.id = "mask";
+  body.append(mask);
+  setTimeout(function () {
+    if (loginPage) {
+      window.addEventListener("click", function (event) {
+        const target = event.target;
+        if (!loginPage.contains(target)) {
+          loginPage.remove();
+          mask.remove();
+        }
+      });
+    }
+  }, 1); //据说一个人点鼠标最快一秒能点16下，所以……应该没问题吧
+}
+
+function submitUser() {
+  var text = document.getElementById("text");
+  var password = document.getElementById("password");
+  if (text.value == "123" && password.value == "123") {
+    const user = document.getElementById("user");
+    user.style.display = "block";
+    const noLogin = document.getElementById("noLogin");
+    noLogin.style.display = "none";
+    const loginPart = document.getElementById("loginPart");
+    loginPart.remove();
+    const mask = document.getElementById("mask");
+    mask.remove();
+    return true;
+  } else {
+    alert("登录失败");
+    return false;
+  }
+}
