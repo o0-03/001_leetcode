@@ -145,6 +145,10 @@ body {
   flex-direction: column;
   padding: 0.5rem;
 }
+#darkSide {
+  display: flex;
+  justify-content: space-between;
+}
 #switch {
   width: 1.8rem;
   height: 1rem;
@@ -188,6 +192,8 @@ body {
   color: var(--color-black);
   height: 1.5rem;
   font-size: 14px;
+  display: flex;
+  align-items: center;
 }
 #introduction a:hover {
   background-color: var(--color-basic);
@@ -245,13 +251,19 @@ body {
 }
 
 .box1 {
-  height: 2rem;
+  width: 100%;
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.box1 > div {
+  height: 1rem;
   width: 80%;
-  padding: 10px;
+  padding-top: 10px;
   font-size: 14px;
+
   color: var(--color-black);
 }
-
 .discussion span {
   color: var(--color-orange);
   background: var(--color-flesh);
@@ -260,14 +272,15 @@ body {
   padding: 2px;
   width: 3rem;
   align-self: center;
+  text-align: center;
 }
 
 .box2 {
   font-size: 12px;
-  height: 50%;
+  height: 2rem;
   width: 100%;
   color: var(--color-grey);
-  padding: 5px 10px;
+  padding: 5px 10px 0 10px;
 
   /* 已改 */
 }
@@ -403,6 +416,9 @@ body {
   padding: 0 10px;
   align-items: center;
   color: var(--color-black);
+}
+.page > .content > span:nth-of-type(1) {
+  width: 80%;
 }
 .page > .content > span:last-of-type {
   margin-left: auto;
@@ -549,7 +565,7 @@ body {
   outline: none;
   background-color: var(--color-white);
 }
-.clear {
+#clear {
   height: 15px;
   width: 15px;
   background-color: var(--color-basic);
@@ -557,8 +573,9 @@ body {
   right: 15px;
   top: 5px;
   border-radius: 50%;
+  cursor: pointer;
 }
-.clear::before {
+#clear::before {
   content: "";
   width: 1px;
   height: 15px;
@@ -567,7 +584,7 @@ body {
   background-color: var(--color-grey);
   transform: rotate(45deg);
 }
-.clear::after {
+#clear::after {
   content: "";
   width: 1px;
   height: 15px;
@@ -584,11 +601,13 @@ body {
   position: absolute;
   z-index: 4;
   padding: 0.5rem;
+  display: none;
 }
 #history > p {
   font-size: 0.9rem;
   color: var(--color-black);
   margin-bottom: 0.3rem;
+  margin-left: 0.5rem;
 }
 .newHistoryItem {
   font-size: 0.8rem;

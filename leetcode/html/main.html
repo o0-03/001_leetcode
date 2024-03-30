@@ -31,7 +31,7 @@
         <p id="noLogin">
           <button type="button" onclick="login()">登录</button>或<button
             type="button"
-            onclick="login()"
+            onclick="register()"
           >
             注册
           </button>
@@ -52,7 +52,7 @@
             <a href="#">个人资料</a>
             <a href="#">积分</a>
             <a href="#">订单</a>
-            <a href="#">
+            <a href="#" id="darkSide">
               <label for="switch">Dark Side</label>
               <input type="checkbox" id="switch" onclick="changeMode()" />
             </a>
@@ -65,8 +65,10 @@
       <div class="left">
         <div class="discussion">
           <div class="dis1">
-            <div class="box1">阿里淘宝｜java｜2025｜春招｜实习</div>
-            <span>热议中</span>
+            <div class="box1">
+              <div>阿里淘宝｜java｜2025｜春招｜实习</div>
+              <span>热议中</span>
+            </div>
             <div class="box2">
               <p>
                 【1.招聘岗位】 「代码块」 【2.招聘对象】 「代码块」
@@ -79,8 +81,10 @@
             <div class="into"><a href="#">进入讨论>></a></div>
           </div>
           <div class="dis2">
-            <div class="box1">阿里闲鱼｜Java｜校招｜社招｜内推｜杭州</div>
-            <span>热议中</span>
+            <div class="box1">
+              <div>阿里闲鱼｜Java｜校招｜社招｜内推｜杭州</div>
+              <span>热议中</span>
+            </div>
             <div class="box2">
               <p>
                 【招聘岗位】：杭州阿里，闲鱼技术部，Java后端研发（工作地点：杭州阿里西溪园区）
@@ -208,10 +212,11 @@
           <div class="searchbox">
             <img src="../images/search.webp" alt="" />
             <input id="searchInput" type="text" placeholder="搜索" />
-            <div class="clear" id="clear"></div>
+            <div id="clear"></div>
           </div>
           <div id="history">
             <p>历史记录</p>
+            <div id="hisItem"></div>
           </div>
         </div>
         <div class="slide">

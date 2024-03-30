@@ -22,26 +22,36 @@ move.addEventListener("mouseleave", function () {
 });
 
 const clear = document.getElementById("clear");
-const search = document.getElementById("input");
+const searchInput = document.getElementById("searchInput");
 clear.addEventListener("click", function () {
-  search.value = " ";
+  searchInput.value = " ";
 });
 
 // 轮播图
+var left = 0;
+var timer;
+var currentIndex;
+var moving;
+const imglist = document.getElementsByClassName("imglist")[0];
+run();
+
 function run() {
   if (left <= -45) {
     left = 0;
   }
-  currentIndex = Math.abs(left / 15) % 3;
-  moving = currentIndex * -15;
+
   imglist.style.marginLeft = left + "rem";
   var n = left % 15 ? 20 : 2000;
+  clearTimeout(timer);
   timer = setTimeout(run, n);
   left -= 1;
 }
 
-function moveLeft(left) {
+function moveLeft() {
   clearTimeout(timer);
+  currentIndex = Math.abs(left / 15) % 3;
+  moving = currentIndex * -15;
+  imglist.style.marginLeft = left + "rem";
   if (left !== moving) {
     if (left > moving) {
       left -= 1;
@@ -51,32 +61,25 @@ function moveLeft(left) {
     if (left <= -45) {
       left = 0;
     }
-    imglist.style.marginLeft = left + "rem";
-    setTimeout(() => {
-      moveLeft(left);
-    }, 20);
+
+    timer = setTimeout(moveLeft, 20);
   }
 }
 
-var left = 0;
-var timer;
-var currentIndex;
-var moving;
-const imglist = document.getElementsByClassName("imglist")[0];
-run();
-
 const circles = document.querySelectorAll(".circle");
 for (let i = 0; i < circles.length; i++) {
-  circles[i].addEventListener("click", function (e) {
-    clearTimeout(timer);
-    moveLeft(left);
-  });
   circles[i].onmouseover = function () {
     clearTimeout(timer);
   };
   circles[i].onmouseout = function () {
-    run();
+    setTimeout(run, 1000);
   };
+  window.addEventListener("click", (e) => {
+    if (circles[i].contains(e.target)) {
+      clearTimeout(timer);
+      moveLeft();
+    }
+  });
 }
 
 // 信息界面
@@ -214,7 +217,7 @@ function login() {
         <input id="submit" type="submit" value="登录">
       </form>
       <div>
-        <a href="#">验证码登录</a>
+        <a href="#" id="btnRegister">验证码登录/注册</a>
         <a href="#">忘记密码</a>
       </div>
       <p>注册或登录即代表您同意《用户协议》和《隐私协议》</p>`;
@@ -223,6 +226,12 @@ function login() {
   var mask = document.createElement("div");
   mask.id = "mask";
   body.append(mask);
+  const btnRegister = document.getElementById("btnRegister");
+  btnRegister.addEventListener("click", function () {
+    loginPage.remove();
+    mask.remove();
+    register();
+  });
   setTimeout(function () {
     if (loginPage) {
       window.addEventListener("click", function (event) {
@@ -234,6 +243,46 @@ function login() {
       });
     }
   }, 1); //据说一个人点鼠标最快一秒能点16下，所以……应该没问题吧
+}
+
+function register() {
+  var registerPage = document.createElement("div");
+  registerPage.id = "loginPart";
+  registerPage.innerHTML = `
+    <div class="contain"><img src="../images/leetcode.svg" alt=""></div>
+      <p>验证码登录/注册</p>
+      <form action="#" onsubmit="return submitUser()">
+        <input id="text" type="text" placeholder="手机/邮箱">
+        <input id="password" type="password" placeholder="验证码">
+        <input id="submit" type="submit" value="登录/注册">
+      </form>
+      <div>
+        <a href="#" id="btnLogin">密码登录</a>
+        <a href="#">忘记密码</a>
+      </div>
+      <p>注册或登录即代表您同意《用户协议》和《隐私协议》</p>`;
+  const body = document.body;
+  body.append(registerPage);
+  var mask = document.createElement("div");
+  mask.id = "mask";
+  body.append(mask);
+  const btnLogin = document.getElementById("btnLogin");
+  btnLogin.addEventListener("click", function () {
+    registerPage.remove();
+    mask.remove();
+    login();
+  });
+  setTimeout(function () {
+    if (registerPage) {
+      window.addEventListener("click", function (event) {
+        const target = event.target;
+        if (!registerPage.contains(target)) {
+          registerPage.remove();
+          mask.remove();
+        }
+      });
+    }
+  }, 1);
 }
 
 function submitUser() {
@@ -264,16 +313,32 @@ out.addEventListener("click", function () {
 });
 
 //搜索
-const searchInput = document.getElementById("searchInput");
-const history = document.getElementById("history");
+
+const historyPart = document.getElementById("history");
+const hisItem = document.getElementById("hisItem");
 var historyTextArray = [];
 
+window.addEventListener("click", function (event) {
+  const target = event.target;
+  if (searchInput.contains(target) || historyPart.contains(target)) {
+    historyPart.style.display = "block";
+    event.stopPropagation();
+  } else {
+    historyPart.style.display = "none";
+  }
+});
 function deleteHistoryItem(n) {
   const historyItems = document.querySelectorAll(".newHistoryItem");
-  if (n < historyItems.length) {
+  if (n >= 0 && n <= historyItems.length) {
     historyItems[n].remove();
     historyTextArray.splice(n, 1);
     localStorage.setItem("historyTextArray", JSON.stringify(historyTextArray));
+  }
+  if (historyItems.length == 1) {
+    historyItems[0].remove();
+  }
+  for (let i = 0; i < historyItems.length; i++) {
+    historyItems[i].setAttribute("data-index", i);
   }
 }
 
@@ -285,17 +350,19 @@ function createHistoryItem(text) {
     <p class="historyText">${text}</p>
     <img class="clearOne" src="../images/clearone.png" alt="">
   `;
-  history.append(newHistoryItem);
+  hisItem.append(newHistoryItem);
   return newHistoryItem;
 }
 
 function updateHistory() {
-  history.innerHTML = "";
+  hisItem.innerHTML = "";
   historyTextArray.forEach((text, i) => {
     const newHistoryItem = createHistoryItem(text);
+    newHistoryItem.setAttribute("data-index", i);
     const clearOne = newHistoryItem.querySelector(".clearOne");
     clearOne.addEventListener("click", function () {
-      deleteHistoryItem(i);
+      const index = parseInt(this.parentElement.getAttribute("data-index"));
+      deleteHistoryItem(index);
     });
   });
 }
@@ -311,7 +378,7 @@ searchInput.addEventListener("keypress", function (e) {
         "historyTextArray",
         JSON.stringify(historyTextArray)
       );
-      searchInput.value = "";
+      searchInput.value = " ";
       updateHistory();
     }
   }
