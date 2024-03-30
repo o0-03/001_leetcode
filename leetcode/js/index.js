@@ -47,10 +47,11 @@ function run() {
   left -= 1;
 }
 
-function moveLeft() {
+function moveLeft(i) {
   clearTimeout(timer);
-  currentIndex = Math.abs(left / 15) % 3;
-  moving = currentIndex * -15;
+  if (i == 1) moving = 0;
+  if (i == 2) moving = -15;
+  if (i == 3) moving = -30;
   imglist.style.marginLeft = left + "rem";
   if (left !== moving) {
     if (left > moving) {
@@ -61,8 +62,9 @@ function moveLeft() {
     if (left <= -45) {
       left = 0;
     }
-
-    timer = setTimeout(moveLeft, 20);
+    timer = setTimeout(function () {
+      moveLeft(i);
+    }, 20);
   }
 }
 
@@ -75,21 +77,24 @@ for (let i = 0; i < circles.length; i++) {
     setTimeout(run, 1000);
   };
   window.addEventListener("click", (e) => {
-    if (circles[i].contains(e.target)) {
-      clearTimeout(timer);
-      moveLeft();
-    }
+    const circles = document.querySelectorAll(".circle li");
+    circles.forEach((circle) => {
+      if (circle.contains(e.target)) {
+        clearTimeout(timer);
+        moveLeft(parseInt(circle.getAttribute("index")));
+      }
+    });
   });
 }
 
 // 信息界面
+function create(userImg) {
+  var userIntro = document.createElement("div");
 
-let userIntro = document.createElement("div");
-
-userIntro.className = "userIntro";
-userIntro.innerHTML = `
+  userIntro.className = "userIntro";
+  userIntro.innerHTML = `
 <div class="userIntro1">
-    <a href="#"><img src="../images/user.webp" alt="" /></a>
+    <a href="#"><img src=${userImg} alt="" /></a>
     <div class="userIntro11">
         <p>
             <a href="#"><span class="name">用户名</span></a>
@@ -107,17 +112,20 @@ userIntro.innerHTML = `
     <p>关注数<br />0</p>
 </div>
 <div class="userIntro3">
-    <button type="submit">私信</button>
-    <button type="submit">关注</button>
+    <button type="submit" id="message">私信</button>
+    <button type="submit" id="follow">关注</button>
 </div>
 `;
-
+  return userIntro;
+}
 const arr1 = document.querySelectorAll(".see");
 
 const arr2 = document.querySelectorAll(".page");
 
 arr1.forEach(function (e, i) {
-  const userIntroClone = userIntro.cloneNode(true);
+  userImg = "../images/user" + (i + 1) + ".webp";
+
+  const userIntroClone = create(userImg);
 
   // arr1[i].addEventListener("mouseout", function () {
   //   const userIntroClone = arr2[i].querySelector(".userIntro");
@@ -193,18 +201,24 @@ feedback.addEventListener("mouseout", function () {
 const html = document.querySelector("html");
 var mode = html.getAttribute("color-mode");
 var modeName = document.getElementById("switch");
-
+var icons = document.querySelectorAll("#introduction a img");
 function changeMode() {
-  html.style.transition = "all 0.5s";
   if (mode === "light") {
     mode = "dark";
+    icons.forEach(function (icon) {
+      icon.style.filter = "invert(100)";
+    });
   } else {
     mode = "light";
+    icons.forEach(function (icon) {
+      icon.style.filter = "none";
+    });
   }
   html.setAttribute("color-mode", mode);
 }
 
 //login
+var userStatus1 = false;
 function login() {
   var loginPage = document.createElement("div");
   loginPage.id = "loginPart";
@@ -289,6 +303,7 @@ function submitUser() {
   var text = document.getElementById("text");
   var password = document.getElementById("password");
   if (text.value == "123" && password.value == "123") {
+    userStatus1 = true;
     const user = document.getElementById("user");
     user.style.display = "block";
     const noLogin = document.getElementById("noLogin");
@@ -297,6 +312,7 @@ function submitUser() {
     loginPart.remove();
     const mask = document.getElementById("mask");
     mask.remove();
+    localStorage.setItem("userStatus1", JSON.stringify(userStatus1));
     return true;
   } else {
     alert("登录失败");
@@ -310,6 +326,18 @@ out.addEventListener("click", function () {
   user.style.display = "none";
   const noLogin = document.getElementById("noLogin");
   noLogin.style.display = "flex";
+  userStatus1 = false;
+  localStorage.setItem("userStatus1", JSON.stringify(userStatus1));
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  userStatus1 = JSON.parse(localStorage.getItem("userStatus1"));
+  if (userStatus1) {
+    const user = document.getElementById("user");
+    user.style.display = "block";
+    const noLogin = document.getElementById("noLogin");
+    noLogin.style.display = "none";
+  }
 });
 
 //搜索
@@ -322,14 +350,14 @@ window.addEventListener("click", function (event) {
   const target = event.target;
   if (searchInput.contains(target) || historyPart.contains(target)) {
     historyPart.style.display = "block";
-    event.stopPropagation();
   } else {
     historyPart.style.display = "none";
   }
 });
+
 function deleteHistoryItem(n) {
   const historyItems = document.querySelectorAll(".newHistoryItem");
-  if (n >= 0 && n <= historyItems.length) {
+  if (n >= 0 && n < historyItems.length) {
     historyItems[n].remove();
     historyTextArray.splice(n, 1);
     localStorage.setItem("historyTextArray", JSON.stringify(historyTextArray));

@@ -9,6 +9,7 @@
   --color-lightGreen: rgb(188, 225, 183);
   --color-green: rgb(63, 196, 42);
   --color-blue: blue;
+  --color-lightBlue: rgba(2, 120, 255, 0.826);
 }
 :root[color-mode="dark"] {
   --color-grey: #ffffff99;
@@ -21,6 +22,22 @@
   --color-lightGreen: rgb(188, 225, 183);
   --color-green: rgb(63, 196, 42);
   --color-blue: #1ba3ff;
+  --color-lightBlue: rgba(2, 120, 255, 0.568);
+}
+@media screen and (min-width: 1000px) {
+  .right {
+    width: 30%;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .right {
+    display: none;
+  }
+}
+@media screen and (max-width: 800px) {
+  .left {
+    width: 50%;
+  }
 }
 
 * {
@@ -143,8 +160,40 @@ body {
   z-index: 10;
   display: none;
   flex-direction: column;
-  padding: 0.5rem;
 }
+.userName {
+  background: var(--color-light);
+  display: flex;
+  padding: 0.3rem;
+  border-radius: 0.5rem 0.5rem 0 0;
+  height: 3.6rem;
+  margin-bottom: 0.5rem;
+}
+.userName > p {
+  display: inline-block;
+  margin: auto 0.5rem;
+  color: var(--color-black);
+}
+.userName > img {
+  height: 3rem;
+  border-radius: 50%;
+}
+#introduction a {
+  padding: 0.5rem;
+  color: var(--color-black);
+  height: 1.8rem;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+#introduction a img {
+  height: 1.1rem;
+}
+
+#introduction a:hover {
+  background-color: var(--color-basic);
+}
+
 #darkSide {
   display: flex;
   justify-content: space-between;
@@ -175,53 +224,30 @@ body {
 #switch:checked::before {
   left: 0.83rem;
 }
-.userName {
-  display: flex;
-  margin-bottom: 0.5rem;
-}
-.userName > p {
-  display: inline-block;
-  margin: auto 0.5rem;
-  color: var(--color-black);
-}
-.userName > img {
-  height: 3rem;
-  border-radius: 50%;
-}
-#introduction a {
-  color: var(--color-black);
-  height: 1.5rem;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-}
-#introduction a:hover {
-  background-color: var(--color-basic);
-}
+
 .main {
   width: 66rem;
-  height: 100rem;
+  height: 80rem;
+  /* 内容比较少，设个高度才能看到回顶按钮 */
   margin: 20px auto 0;
   display: flex;
 }
 
 .left {
   width: 50rem;
-  height: 50rem;
   margin-right: 1rem;
-  padding: 10px;
+  padding: 0.7rem;
 }
 
 .right {
   width: 15rem;
-  height: 30rem;
-  margin-top: 10px;
+  margin-top: 0.7rem;
 }
 
 .discussion {
-  top: 20px;
+  top: 1rem;
   height: 7rem;
-  margin-bottom: 10px;
+  margin-bottom: 0.7rem;
   display: flex;
   justify-content: space-between;
 }
@@ -232,7 +258,7 @@ body {
   height: 100%;
   background: var(--color-white);
   border: 1px solid var(--color-white);
-  border-radius: 5px;
+  border-radius: 7px;
   box-shadow: 0 0 5px 0.5px var(--color-light);
   display: flex;
   flex-wrap: wrap;
@@ -491,6 +517,18 @@ body {
   }
 }
 
+#message {
+  height: 2rem;
+  border: 0;
+  border-radius: 5px;
+  background: var(--color-light);
+}
+#follow {
+  height: 2rem;
+  border: 0;
+  border-radius: 5px;
+  background: var(--color-lightBlue);
+}
 .content > img:hover + .userIntro {
   opacity: 1;
   transition: 0.5s;
