@@ -28,47 +28,58 @@ clear.addEventListener("click", function () {
 });
 
 // 轮播图
-var left = 0;
-var timer;
-const imglist = document.getElementsByClassName("imglist")[0];
-run();
 function run() {
   if (left <= -45) {
     left = 0;
   }
+  currentIndex = Math.abs(left / 15) % 3;
+  moving = currentIndex * -15;
   imglist.style.marginLeft = left + "rem";
   var n = left % 15 ? 20 : 2000;
-
   timer = setTimeout(run, n);
   left -= 1;
 }
-const circle = document.getElementsByClassName("circle");
-for (let i = 0; i < circle.length; i++) {
-  circle[i].addEventListener("click", function (e) {
-    let index = Number(e.target.getAttribute("index"));
-    fix(index);
-  });
-}
-circle.onmouseover = function () {
+
+function moveLeft(left) {
   clearTimeout(timer);
-};
-function fix(index) {
-  var moving = index * -15;
-  var a = 0;
-  function move() {
-    if (a >= moving) {
-      imglist.style.marginLeft = a + "rem";
-      a -= 1;
-      setTimeout(move, 20);
+  if (left !== moving) {
+    if (left > moving) {
+      left -= 1;
+    } else {
+      left += 1;
     }
+    if (left <= -45) {
+      left = 0;
+    }
+    imglist.style.marginLeft = left + "rem";
+    setTimeout(() => {
+      moveLeft(left);
+    }, 20);
   }
-  move();
 }
-// 不太对，还在想错误在哪
+
+var left = 0;
+var timer;
+var currentIndex;
+var moving;
+const imglist = document.getElementsByClassName("imglist")[0];
+run();
+
+const circles = document.querySelectorAll(".circle");
+for (let i = 0; i < circles.length; i++) {
+  circles[i].addEventListener("click", function (e) {
+    clearTimeout(timer);
+    moveLeft(left);
+  });
+  circles[i].onmouseover = function () {
+    clearTimeout(timer);
+  };
+  circles[i].onmouseout = function () {
+    run();
+  };
+}
 
 // 信息界面
-
-// 和css一样而且还麻烦，还得循环
 
 let userIntro = document.createElement("div");
 
@@ -130,6 +141,7 @@ arr1.forEach(function (e, i) {
 
 //回顶
 const scroll = document.getElementById("scroll");
+
 window.onscroll = function () {
   const scrollTop = document.documentElement.scrollTop;
   if (scrollTop > 200) {
@@ -149,19 +161,42 @@ scroll.addEventListener("click", function () {
     }
   }, 10);
 });
+const scrollImg = document.createElement("div");
+scrollImg.innerHTML = `<img src="../images/up.png" alt="" />`;
+scroll.append(scrollImg);
+scroll.addEventListener("mouseover", function () {
+  scroll.innerText = "回到顶部";
+  scrollImg.remove();
+});
+scroll.addEventListener("mouseout", function () {
+  scroll.innerText = "";
+  scroll.append(scrollImg);
+});
+
+const feedback = document.getElementById("feedback");
+const feedImg = document.createElement("div");
+feedImg.innerHTML = `<img src="../images/question.png" alt="" />`;
+feedback.append(feedImg);
+feedback.addEventListener("mouseover", function () {
+  feedback.innerText = "问题反馈";
+  feedImg.remove();
+});
+feedback.addEventListener("mouseout", function () {
+  feedback.innerText = "";
+  feedback.append(feedImg);
+});
 
 //mode
 const html = document.querySelector("html");
 var mode = html.getAttribute("color-mode");
-var modeName = document.getElementById("modeName");
+var modeName = document.getElementById("switch");
 
 function changeMode() {
+  html.style.transition = "all 0.5s";
   if (mode === "light") {
     mode = "dark";
-    modeName.innerText = "黑夜";
   } else {
     mode = "light";
-    modeName.innerText = "白天";
   }
   html.setAttribute("color-mode", mode);
 }
@@ -219,3 +254,72 @@ function submitUser() {
     return false;
   }
 }
+
+const out = document.getElementById("out");
+out.addEventListener("click", function () {
+  const user = document.getElementById("user");
+  user.style.display = "none";
+  const noLogin = document.getElementById("noLogin");
+  noLogin.style.display = "flex";
+});
+
+//搜索
+const searchInput = document.getElementById("searchInput");
+const history = document.getElementById("history");
+var historyTextArray = [];
+
+function deleteHistoryItem(n) {
+  const historyItems = document.querySelectorAll(".newHistoryItem");
+  if (n < historyItems.length) {
+    historyItems[n].remove();
+    historyTextArray.splice(n, 1);
+    localStorage.setItem("historyTextArray", JSON.stringify(historyTextArray));
+  }
+}
+
+function createHistoryItem(text) {
+  const newHistoryItem = document.createElement("div");
+  newHistoryItem.className = "newHistoryItem";
+  newHistoryItem.innerHTML = `
+    <img src="../images/history.png" alt="">
+    <p class="historyText">${text}</p>
+    <img class="clearOne" src="../images/clearone.png" alt="">
+  `;
+  history.append(newHistoryItem);
+  return newHistoryItem;
+}
+
+function updateHistory() {
+  history.innerHTML = "";
+  historyTextArray.forEach((text, i) => {
+    const newHistoryItem = createHistoryItem(text);
+    const clearOne = newHistoryItem.querySelector(".clearOne");
+    clearOne.addEventListener("click", function () {
+      deleteHistoryItem(i);
+    });
+  });
+}
+
+searchInput.addEventListener("keypress", function (e) {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    const inputValue = searchInput.value.trim();
+    if (inputValue !== "") {
+      const newHistoryItem = createHistoryItem(inputValue);
+      historyTextArray.push(inputValue);
+      localStorage.setItem(
+        "historyTextArray",
+        JSON.stringify(historyTextArray)
+      );
+      searchInput.value = "";
+      updateHistory();
+    }
+  }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  if (localStorage.getItem("historyTextArray")) {
+    historyTextArray = JSON.parse(localStorage.getItem("historyTextArray"));
+    updateHistory();
+  }
+});

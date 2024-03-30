@@ -28,32 +28,65 @@
         </li>
       </ul>
       <div class="other">
-        <p id="noLogin"><button type="button" onclick="login()">登录</button>或<button type="button" onclick="login()">注册</button></p>
+        <p id="noLogin">
+          <button type="button" onclick="login()">登录</button>或<button
+            type="button"
+            onclick="login()"
+          >
+            注册
+          </button>
+        </p>
         <div id="user">
-          <img src="../images/user.webp" alt="">
+          <img src="../images/user.webp" alt="" />
+          <div id="introduction">
+            <div class="userName">
+              <img src="../images/user.webp" alt="" />
+              <p>o0-03</p>
+            </div>
+            <a href="#">收藏夹</a>
+            <a href="#">个人笔记</a>
+            <a href="#">我的题解</a>
+            <a href="#">做题分析</a>
+            <a href="#">进度管理</a>
+            <a href="#">我的playground</a>
+            <a href="#">个人资料</a>
+            <a href="#">积分</a>
+            <a href="#">订单</a>
+            <a href="#">
+              <label for="switch">Dark Side</label>
+              <input type="checkbox" id="switch" onclick="changeMode()" />
+            </a>
+            <a href="#" id="out">退出</a>
+          </div>
         </div>
-        <div><button type="button" onclick="changeMode()" id="modeName">白天</button></div>
       </div>
     </div>
     <div class="main">
       <div class="left">
         <div class="discussion">
           <div class="dis1">
-            <div class="box1">随便写点|点点点点点</div>
+            <div class="box1">阿里淘宝｜java｜2025｜春招｜实习</div>
             <span>热议中</span>
             <div class="box2">
               <p>
-                啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
+                【1.招聘岗位】 「代码块」 【2.招聘对象】 「代码块」
+                【3.简历内推】
+                简历请发送到sanglonglong.sll@taobao.com，请以“【JAVA招聘】姓名 +
+                手机 + 邮箱 + 最高学位(本科/硕士/博士) + 毕业院校 + 毕业年/月 +
+                求职岗位(Java后端/数据/等) ” 作为邮件标题
               </p>
             </div>
             <div class="into"><a href="#">进入讨论>></a></div>
           </div>
           <div class="dis2">
-            <div class="box1">随便写点|点点点点点</div>
+            <div class="box1">阿里闲鱼｜Java｜校招｜社招｜内推｜杭州</div>
             <span>热议中</span>
             <div class="box2">
               <p>
-                啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
+                【招聘岗位】：杭州阿里，闲鱼技术部，Java后端研发（工作地点：杭州阿里西溪园区）
+                【招聘对象】：国内外院校23/24/25届毕业生（eg.
+                2024届毕业时间：2023年11月~2024年10月）。社招/校招、正式/实习
+                都可发offer . 【简历内推】：简历请发送到yuanchao@alibaba-inc.com
               </p>
             </div>
             <div class="into"><a href="#">进入讨论>></a></div>
@@ -112,16 +145,40 @@
         </div>
         <div class="article">
           <div class="page">
-            <img src="../images/article.webp" alt="" />
+            <img src="../images/article2.webp" alt="" />
             <div class="content">
-              <img src="../images/user.webp" alt="" class="see" />
-              
-              <span>文章标题</span>
+              <img src="../images/user3.webp" alt="" class="see" />
+
+              <span
+                >求职求助｜985
+                软件工程毕业两年多一直空窗，求助培训机构和方向推荐</span
+              >
               <span>1分钟前</span>
             </div>
             <p>
-              文章内容啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
-              啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
+              在某樱花985软件工程毕业以后，就用自己存的钱一直纯纯玩了两年，基本是完全的空窗期，现在的情况大概是不得不找工作了，想来想去感觉只能找个培训机构再把专业知识捡起来一些然后不知道能不能包装一下经验，也许还能找个养活自己的工作
+              但是选啥培训机构以及培训方向（java开发，web前端，嵌入式啥的）也不清楚哪个方式比较适合
+              求
+            </p>
+            <div class="tag">
+              <span>讨论</span><span>html</span><span>css</span
+              ><span>javascript</span>
+            </div>
+          </div>
+          <div class="page">
+            <img src="../images/article3.webp" alt="" />
+            <div class="content">
+              <img src="../images/user2.webp" alt="" class="see" />
+
+              <span>[力扣刷题攻略] Re：从零开始的力扣刷题生活</span>
+              <span>5分钟前</span>
+            </div>
+            <p>
+              这是一份由力扣官方整理的推荐刷题路径，适合
+              考虑系统性地按各知识点刷题 的扣友。 你可以这样使用本刷题攻略：
+              按照本讨论帖推荐的顺序逐一刷题，适合第一次系统性刷题的朋友；
+              按照索引找到对应的知识点，选择自己较为薄弱的算法知识针对性刷题；
+              除了按照本帖推荐的刷题路径进行刷题以外，你还可以一同参与这个题单的创建与维护，
             </p>
             <div class="tag">
               <span>讨论</span><span>html</span><span>css</span
@@ -132,45 +189,29 @@
             <img src="../images/article.webp" alt="" />
             <div class="content">
               <img src="../images/user.webp" alt="" class="see" />
-              
-              <span>文章标题</span>
-              <span>1分钟前</span>
+
+              <span>交流｜希望得到一些建议</span>
+              <span>9分钟前</span>
             </div>
             <p>
-              文章内容啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
-              啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
+              本人中流211的计科专业，目前大一。比较迷茫不知道要学一下什么，语言是学的C++，然后现在在开数据结构，算法的内容也在自己零零散散的看一些。之前报了今年的蓝桥杯，但是现在也是准备得一坨，然后学校里面课程安排的很紧，自学的时间比较少，而且也不知道该学一些什么。希望大佬可以给一些建议。
             </p>
             <div class="tag">
               <span>讨论</span><span>html</span><span>css</span
               ><span>javascript</span>
             </div>
           </div>
-          <div class="page">
-            <img src="../images/article.webp" alt="" />
-            <div class="content">
-              <img src="../images/user.webp" alt="" class="see" />
-              
-              <span>文章标题</span>
-              <span>1分钟前</span>
-            </div>
-            <p>
-              文章内容啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
-              啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
-            </p>
-            <div class="tag">
-              <span>讨论</span><span>html</span><span>css</span
-              ><span>javascript</span>
-            </div>
-          </div>
+        </div>
       </div>
-      
-    </div>
       <div class="right">
         <div class="search">
           <div class="searchbox">
             <img src="../images/search.webp" alt="" />
-            <input id="input" type="text" placeholder="搜索" />
+            <input id="searchInput" type="text" placeholder="搜索" />
             <div class="clear" id="clear"></div>
+          </div>
+          <div id="history">
+            <p>历史记录</p>
           </div>
         </div>
         <div class="slide">
@@ -189,39 +230,51 @@
         <div class="hot">
           <p>热门讨论</p>
           <div>
-            <span>1</span>
-            <img src="../images/user.webp" alt="" />
-            <span>某人</span>
-            <p>某事</p>
+            <span class="Number">1</span>
+            <img src="../images/user4.webp" alt="" />
+            <span>求助丨实习求助</span>
+            <p>
+              武汉双非一本本硕，生物医学工程专业，研究方向视频动作识别，在学java和python，想走技术岗，这学期研一下，想暑假去找实习，想问问大家有没有建议关于怎么找实习和怎么更好就业，去学什么
+            </p>
           </div>
           <div>
-            <span>2</span>
-            <img src="../images/user.webp" alt="" />
-            <span>某人</span>
-            <p>某事</p>
+            <span class="Number">2</span>
+            <img src="../images/user5.webp" alt="" />
+            <span>求助｜蓝桥杯要不要打</span>
+            <p>本人现在本科大二，考虑蓝桥杯到底要不要打，对简历要求大吗</p>
           </div>
           <div>
-            <span>3</span>
-            <img src="../images/user.webp" alt="" />
-            <span>某人</span>
-            <p>某事</p>
+            <span class="Number">3</span>
+            <img src="../images/user6.webp" alt="" />
+            <span>就业形势</span>
+            <p>
+              刷力扣算法题是学好数据结构后再刷吗，2024年后就业的话学Java，C++，Python哪个更好就业，大四实习开始实习晚不晚。
+            </p>
           </div>
           <div>
             <span>4</span>
-            <img src="../images/user.webp" alt="" />
-            <span>某人</span>
-            <p>某事</p>
+            <img src="../images/user7.webp" alt="" />
+            <span>请指教！</span>
+            <p>
+              求助 腾讯音乐 笔试第三题 判断[l,r]区间内好数的个数
+              好数:奇数位和偶数位相等 「代码块」 哪里不对呢
+              各内联代码位仁兄请指教！
+            </p>
           </div>
           <div>
             <span>5</span>
-            <img src="../images/user.webp" alt="" />
-            <span>某人</span>
-            <p>某事</p>
+            <img src="../images/user8.webp" alt="" />
+            <span>字节面试题记录</span>
+            <p>
+              字节面试题，求大佬们看看，数组A中给定可以使用的1~9的数，返回由A数组中的元素组成的小于n的最大数。
+              例如A={1, 2, 4, 9}，x=2533，返回2499 「代码块」
+            </p>
           </div>
         </div>
       </div>
     </div>
-    <button type="button" id="scroll">&#128285</button>
+    <button type="button" id="scroll"></button>
+    <button type="button" id="feedback"></button>
     <script src="../js/index.js"></script>
   </body>
 </html>
